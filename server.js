@@ -9,14 +9,22 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/records', require('./routes/recordRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 
+// ✅ ADD THIS (homepage route)
+app.get('/', (req, res) => {
+  res.send('Backend is running 🚀');
+});
+
+// DB connection
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log('DB Error:', err));
 
+// Server start
 app.listen(process.env.PORT || 5000, () => 
   console.log(`Server running on port ${process.env.PORT || 5000}`)
 );
