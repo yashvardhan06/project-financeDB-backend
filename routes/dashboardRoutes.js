@@ -3,9 +3,9 @@ const router = express.Router();
 const Record = require('../models/Record');
 
 const auth = require('../middleware/auth');
-const authorize = require('../middleware/authorize'); // ✅ updated
+const authorize = require('../middleware/authorize'); 
 
-// ================= DASHBOARD SUMMARY =================
+//DASHBOARD SUMMARY
 // 🔥 Admin + Analyst only
 router.get('/summary', auth, authorize('Admin', 'Analyst'), async (req, res) => {
   try {
